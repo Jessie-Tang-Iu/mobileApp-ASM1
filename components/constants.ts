@@ -5,7 +5,7 @@ export const constantStyles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#121212',
         justifyContent: 'flex-start',
-        paddingTop: 65,
+        paddingTop: 15,
     },
     header: {
         padding: 10,
