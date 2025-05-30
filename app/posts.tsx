@@ -1,7 +1,6 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image, TouchableOpacity, FlatList } from 'react-native';
-import { Feather } from '@expo/vector-icons';
-
+import { View, FlatList } from 'react-native';
+import Post from '../components/post';
+import { constantStyles } from '../components/constants';
 
 export default function Posts() {
 
@@ -92,133 +91,27 @@ export default function Posts() {
         },
     ];
 
-    const Post = ({ post }: {post: any}) => {
-
-        const user = posts.find(u => u.userName === post.userName);
-
-        return (
-            <View style={styles.postContainer}>
-            
-            <Image source={user?.profilePic} style={styles.profilePic} />
-                
-            <View style={{ flex: 1 }}>
-                
-                <View style={styles.postHeader}>
-                <TouchableOpacity><Text style={styles.username}>{post.userName} </Text></TouchableOpacity>
-                <Text style={styles.time}>{post.time}</Text>
-                </View>
-                
-                <Text style={styles.content}>{post.content}</Text>
-
-                {
-                post.picture !== null && (
-                    <Image source={{ uri: post.picture}} 
-                    style={{ width: '100%', height: 200, marginTop: 10, borderRadius: 8,}} />
-                )
-                }
-                
-                <View style={styles.postActions}>
-                <TouchableOpacity style={{ flex: 1, flexDirection: 'row' }}>
-                    <Feather name="heart" size={18} color="#fff" />
-                    {
-                    post.heart !== 0 && (
-                        <Text style={{ color: '#fff'}}> {post.heart}</Text>
-                    )
-                    }
-                </TouchableOpacity>
-                <TouchableOpacity style={{ flex: 1, flexDirection: 'row' }}>
-                    <Feather name="message-circle" style={styles.iconMargin} />
-                    {
-                    post.comment !== 0 && (
-                        <Text style={{ color: '#fff'}}> {post.comment}</Text>
-                    )
-                    }
-                </TouchableOpacity>
-                <TouchableOpacity style={{ flex: 1, flexDirection: 'row' }}>
-                    <Feather name="repeat" style={styles.iconMargin} />
-                    {
-                    post.repost !== 0 && (
-                        <Text style={{ color: '#fff'}}> {post.repost}</Text>
-                    )
-                    }
-                </TouchableOpacity>
-                <TouchableOpacity style={{ flex: 1, flexDirection: 'row' }}>
-                    <Feather name="send" style={styles.iconMargin} />
-                    {
-                    post.send !== 0 && (
-                        <Text style={{ color: '#fff'}}> {post.send}</Text>
-                    )
-                    }
-                </TouchableOpacity>
-                </View>
-                
-            </View>
-
-            <TouchableOpacity><Feather name="more-horizontal" style={styles.iconMargin}></Feather></TouchableOpacity>
-            
-            </View>
-        );
-    };
-
     return (
         <View style={{ flex: 1}}>
-        <FlatList
-            data={posts}
-            keyExtractor={(item) => item.id}
-            renderItem={({ item }) => <Post post={item} />}
-            contentContainerStyle={styles.feed}
-            showsVerticalScrollIndicator={false}
-            ItemSeparatorComponent={() => <View style={styles.hr} />}
-        />
-      </View>
+            <FlatList
+                data={posts}
+                keyExtractor={(item) => item.id}
+                renderItem={({ item }) => 
+                    <Post
+                        userName={item.userName}
+                        profilePic={item.profilePic}
+                        time={item.time}
+                        content={item.content}
+                        picture={item.picture}
+                        heart={item.heart}
+                        comment={item.comment}
+                        repost={item.repost}
+                        send={item.send}
+                    />}
+                contentContainerStyle={constantStyles.feed}
+                showsVerticalScrollIndicator={false}
+                ItemSeparatorComponent={() => <View style={constantStyles.hr} />}
+            />
+        </View>
     );
 }
-
-const styles = StyleSheet.create({
-    feed: {
-        paddingHorizontal: 16,
-    },
-    postContainer: {
-        flexDirection: 'row',
-        marginVertical: 20,
-        gap: 10,
-    },
-    postHeader: {
-        flexDirection: 'row',
-        alignItems: 'center',
-    },
-    postActions: {
-        marginTop: 10,
-        flexDirection: 'row',
-        width: '65%',
-    },
-    profilePic: {
-        width: 42,
-        height: 42,
-        borderRadius: 21,
-    },
-    username: {
-        color: '#fff',
-        fontWeight: 'bold',
-        fontSize: 15,
-    },
-    time: {
-        color: '#444',
-        fontSize: 12,
-    },
-    content: {
-        color: '#fff',
-        marginTop: 4,
-        fontSize: 15,
-        lineHeight: 20,
-    },
-    iconMargin: {
-        fontSize: 18,
-        color: '#fff',
-    },
-    hr: {
-        height: 1,
-        width: '100%',
-        backgroundColor: '#444',
-    },
-});
