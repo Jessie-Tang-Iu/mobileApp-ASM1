@@ -9,7 +9,10 @@ export default function Navbar() {
 
     return (
         <View style={styles.footer}>
-            <TouchableOpacity onPress={() => router.push(`../`)}><Feather name="home" style={styles.tabButton}></Feather></TouchableOpacity>
+            <TouchableOpacity onPress={() => router.push(`/`)}><Feather name="home" style={styles.tabButton}></Feather></TouchableOpacity>
+            <TouchableOpacity><Feather name="search" style={styles.tabButton}></Feather></TouchableOpacity>
+            <TouchableOpacity style={styles.plusBackgroundColor}><Feather name="plus" style={styles.tabButton}></Feather></TouchableOpacity>
+            <TouchableOpacity><Feather name="heart" style={styles.tabButton}></Feather></TouchableOpacity>
             <TouchableOpacity onPress={() => router.push(`../profile`)}><Feather name="user" style={styles.tabButton}></Feather></TouchableOpacity>
         </View>
     );
@@ -27,5 +30,11 @@ const styles = StyleSheet.create({
     color: '#555',
     marginVertical: 10,
     marginHorizontal: 15,
+  },
+  plusBackgroundColor: {
+    marginVertical: 5,
+    marginHorizontal: 15,
+    backgroundColor: '#222',
+    borderRadius: 10,
   },
 });

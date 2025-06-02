@@ -16,6 +16,8 @@ export default function App() {
                   <Tab label={"Following"} isFocused={false} />
                   <Tab label={"Hashtag"} isFocused={false} />
                 </View>
+
+                <View style={constantStyles.hr} />
             </View>
 
             <Posts />
