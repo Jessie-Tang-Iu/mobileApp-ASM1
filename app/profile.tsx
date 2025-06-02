@@ -68,7 +68,7 @@ export default function Profile() {
     return (
     <View style={constantStyles.container}>
         
-        // Status Bar
+        {/* Status Bar */}
         <View style={constantStyles.header}>
             <View style={constantStyles.profileHeaderIcon}>
                 <TouchableOpacity><Feather name="lock" style={constantStyles.headerIcon} /></TouchableOpacity>
@@ -80,7 +80,7 @@ export default function Profile() {
             </View>
         </View>
 
-        // Profile Header
+        {/* Profile Header */}
         <View style={{padding: 10}}>
           {/* Header */}
           <View style={styles.header}>
@@ -129,7 +129,7 @@ export default function Profile() {
           <Tab label={'Reposts'} isFocused={false} />
         </View>
 
-        // User Posts Section
+        {/* User Posts Section */}
         <View style={{flex: 1}}>
           <FlatList
             data={userPosts}
