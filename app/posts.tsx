@@ -1,4 +1,4 @@
-import { View, FlatList } from 'react-native';
+import { StyleSheet, View, FlatList, Text, Pressable } from 'react-native';
 import Post from '../components/post';
 import { constantStyles } from '../components/constants';
 
@@ -91,6 +91,10 @@ export default function Posts() {
         },
     ];
 
+    const eventHandler = () => {
+        alert("Assignment 1 Completed");
+    }
+
     return (
         <View style={{ flex: 1}}>
             <FlatList
@@ -111,7 +115,28 @@ export default function Posts() {
                 contentContainerStyle={constantStyles.feed}
                 showsVerticalScrollIndicator={false}
                 ItemSeparatorComponent={() => <View style={constantStyles.hr} />}
+                ListFooterComponent={
+                    <Pressable onPress={eventHandler} style={styles.button}><Text style={styles.text}>Finish Alert</Text></Pressable>
+                }
             />
         </View>
     );
 }
+
+const styles = StyleSheet.create({
+    button: {
+        backgroundColor: '#008CBA',
+        color: '#fff',
+        width: 170,
+        height: 30,
+        borderRadius: 5,
+        fontSize: 16,
+        marginTop: 20,
+        justifyContent: 'center',
+        alignSelf: 'center',
+    },
+    text: {
+        color: '#fff',
+        textAlign: 'center',
+    },
+});
